@@ -43,4 +43,6 @@ Courses.insert_many(courses).execute()
 Student_Courses.insert_many(student_courses).execute()
 
 for name in Students.select():
-    print(Students.id, Students.name)
+    if age > 30:
+        print(Students.id, Students.name)
+

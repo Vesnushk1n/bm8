@@ -16,7 +16,14 @@ con.executemany('INSERT INTO Students (id, name, surname, age, city) VALUES (?, 
 con.executemany('INSERT INTO Courses (id, name, time_start, time_end) VALUES (?, ?, ?, ?)', info_b)
 con.executemany('INSERT INTO Student_courses (student_id, course_id) VALUES (?, ?)', info_c)
 
-a = con.execute('SELECT surname FROM Students')
-print(a.fetchall())
+a = 30
+b = 'python'
+c = 'Spb'
+
+cursor.execute('SELECT * FROM Students WHERE age=?', (a,))
+cursor.execute('SELECT * FROM Courses WHERE name=?', (b,))
+cursor.execute('SELECT * FROM Students WHERE id=(SELECT student_id FROM Student_courses WHERE course_id=?) AND city=?', (b,c,))
+
+cursor.fetchall()
 con.commit()
 con.close()
