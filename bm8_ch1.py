@@ -22,7 +22,7 @@ c = 'Spb'
 
 cursor.execute('SELECT * FROM Students WHERE age=?', (a,))
 cursor.execute('SELECT * FROM Courses WHERE name=?', (b,))
-cursor.execute('SELECT * FROM Students WHERE id=(SELECT student_id FROM Student_courses WHERE course_id=?) AND city=?', (b,c,))
+cursor.execute('SELECT * FROM Students FULL OUTER JOIN Courses ON Students.genreId=Courses.genreId WHERE Students.genreId IS 30 OR Courses.genreId IS Spb')
 
 cursor.fetchall()
 con.commit()

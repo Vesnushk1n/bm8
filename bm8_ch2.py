@@ -42,7 +42,6 @@ Students.insert_many(students).execute()
 Courses.insert_many(courses).execute()
 Student_Courses.insert_many(student_courses).execute()
 
-for name in Students.select():
-    if age > 30:
-        print(Students.id, Students.name)
-
+a = Students.get(Students.age > 30)
+b = Courses.get(Courses.name == 'python')
+c = Students.get(Students.city == 'Spb') and Courses.get(Courses.name == 'python')
