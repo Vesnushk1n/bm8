@@ -20,10 +20,13 @@ a = 30
 b = 'python'
 c = 'Spb'
 
-cursor.execute('SELECT * FROM Students WHERE age=?', (a,))
+cursor.execute('''SELECT name, surname FROM Students Where age > 30''')
 cursor.execute('SELECT * FROM Courses WHERE name=?', (b,))
-cursor.execute('SELECT * FROM Students FULL OUTER JOIN Courses ON Students.genreId=Courses.genreId WHERE Students.genreId IS 30 OR Courses.genreId IS Spb')
-
+cursor.execute('''SELECT * FROM Students JOIN Student_courses ON Students.id=Student_courses.student_id WHERE Student_courses.course_id = 1''')
+cursor.execute('''SELECT Students.name, Students.surname FROM Students
+             JOIN Student_Courses ON Student_courses.student_id = Students.id
+             JOIN Courses ON Student_courses.course_id = Courses.id
+             WHERE Courses.name = "python" AND Students.city = "Spb"''')
 cursor.fetchall()
 con.commit()
 con.close()

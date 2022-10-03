@@ -42,6 +42,14 @@ Students.insert_many(students).execute()
 Courses.insert_many(courses).execute()
 Student_Courses.insert_many(student_courses).execute()
 
-a = Students.get(Students.age > 30)
-b = Courses.get(Courses.name == 'python')
-c = Students.get(Students.city == 'Spb') and Courses.get(Courses.name == 'python')
+a = Students.select().where(Students.age > 30)
+for info in a:
+    print(info.name, info.surname)
+
+b = Students.select().join(Student_Courses).join(Courses).where(Courses.name == 'python')
+for info in b:
+    print(info.name, info.surname)
+
+c = Students.select().join(Student_Courses).join(Courses).where((Courses.name == 'python') & (Students.city == 'Spb'))
+for info in c:
+    print(info.name, info.surname)
