@@ -1,9 +1,9 @@
 import sqlite3
 con = sqlite3.connect('data.db')
 cursor = con.cursor()
-# con.execute('CREATE TABLE Students (id varchar(20), name varchar(20), surname varchar(20), age int, city varchar(20))')
-# con.execute('CREATE TABLE Courses (id varchar(20), name varchar(20), time_start, time_end)')
-# con.execute('CREATE TABLE Student_courses (student_id, course_id)')
+#cursor.execute('CREATE TABLE Students (id int, name varchar(20), surname varchar(20), age int, city varchar(20))')
+#cursor.execute('CREATE TABLE Courses (id int, name varchar(20), time_start, time_end)')
+#cursor.execute('CREATE TABLE Student_courses (student_id int, course_id int)')
 
 info_a = [(1, 'Max', 'Brooks', 24, 'Spb'), (2, 'John', 'Stones', 15, 'Spb'),
 (3, 'Andy', 'Wings', 45, 'Manhester'), (4, 'Kate', 'Brooks', 34, 'Spb')]
@@ -20,13 +20,14 @@ a = 30
 b = 'python'
 c = 'Spb'
 
-cursor.execute('''SELECT name, surname FROM Students Where age > 30''')
-cursor.execute('SELECT * FROM Courses WHERE name=?', (b,))
+cursor.execute('''SELECT Students.name, Students.surname FROM Students Where age > 30''')
+cursor.execute('''SELECT * FROM Courses WHERE name="python"''')
 cursor.execute('''SELECT * FROM Students JOIN Student_courses ON Students.id=Student_courses.student_id WHERE Student_courses.course_id = 1''')
 cursor.execute('''SELECT Students.name, Students.surname FROM Students
-             JOIN Student_Courses ON Student_courses.student_id = Students.id
-             JOIN Courses ON Student_courses.course_id = Courses.id
-             WHERE Courses.name = "python" AND Students.city = "Spb"''')
-cursor.fetchall()
+JOIN Student_Courses ON Student_courses.student_id = Students.id
+JOIN Courses ON Student_courses.course_id = Courses.id
+WHERE Courses.name = \'python\' AND Students.city = \'Spb\'''')
+data = cursor.fetchall()
+print(data)
 con.commit()
 con.close()

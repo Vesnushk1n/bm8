@@ -31,12 +31,24 @@ class Student_Courses (Model):
 
 Student_Courses.create_table()
 
-students = [(1, 'Max', 'Brooks', 24, 'Spb'), (2, 'John', 'Stones', 15, 'Spb'),
-            (3, 'Andy', 'Wings', 45, 'Manhester'),(4, 'Kate', 'Brooks', 34, 'Spb')]
+students = [
+{ 'id': 1, 'name':'Max', 'surname':'Brooks', 'age': 24, 'city':'Spb'},
+{'id': 2, 'name':'John', 'surname':'Stones', 'age': 15, 'city':'Spb'},
+{'id': 3, 'name':'Andy', 'surname':'Wings', 'age': 45, 'city':'Manchester'},
+{'id': 4, 'name':'Kate', 'surname':'Brooks', 'age': 34, 'city':'Spb'}
+]
 
-courses = [(1, 'python', '21.07.21', '21.08.21'), (2, 'java', '13.07.21', '16.08.21')]
+courses = [
+{'id':1, 'name':'python', 'data_start':'21.07.21', 'data_end':'21.08.21'},
+{'id':2, 'name':'java', 'data_start':'13.07.21', 'data_end':'16.08.21'}
+]
 
-student_courses = [(1, 1), (2, 1), (3, 1), (4, 2)]
+student_courses = [
+{ 'student_id': 1, 'course_id': 1},
+{ 'student_id': 2, 'course_id': 1},
+{ 'student_id': 3, 'course_id': 1},
+{ 'student_id': 4, 'course_id': 2}
+]
 
 Students.insert_many(students).execute()
 Courses.insert_many(courses).execute()
